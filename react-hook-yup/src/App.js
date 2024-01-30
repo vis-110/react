@@ -45,6 +45,8 @@ const schema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
+
+
 function App() {
   const {
     register,
@@ -71,6 +73,8 @@ function App() {
               <form
                 onSubmit={handleSubmit((data) => {
                   console.log(data);
+                  
+                  alert(JSON.stringify(data)+"Data added successfully");
                 })}
                 className="formStyle text-center my-3"
               >
