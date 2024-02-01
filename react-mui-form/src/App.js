@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import * as React from "react";
 import "./App.css";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -6,197 +6,113 @@ import Icon from "@mui/material/Icon";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+
 
 function App() {
   return (
     <>
-      <div>
-        <h1>React Form Validation Using Material UI</h1>
-        <Typography
-          variant="h5"
-          component="p"
-          align="center"
-          sx={{ backgroundColor: "red", color: "yellow" }}
-        >
-          Success
-        </Typography>
-        <Button
-          sx={{
-            backgroundColor: "red",
-            color: "yellow",
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-            },
-          }}
-        >
-          Login <CheckCircleOutlineIcon />
-        </Button>
-      </div>
+      <Box sx={{ width: "45%", margin: "50px auto" }}>
+        <Container maxWidth="lg">
+          <Card variant="outlined" sx={{}}>
+            <Box sx={{ textAlign: "center" }}>
+              <Typography
+                variant="h5"
+                sx={{ margin: "30px 0px 20px 0px", color: "gray" }}
+                component="h6"
+              >
+                Registration Form
+              </Typography>
+            </Box>
+            <Grid container sx={{ padding: "20px 0px" }}>
+              <Grid item lg={2} sx={{}}></Grid>
+              <Grid item lg={3.5} sx={{}}>
+                <TextField label="First Name" sx={{ width: "100%" }} />
+              </Grid>
+              <Grid item lg={1} sx={{}}></Grid>
+              <Grid item lg={3.5} sx={{}}>
+                <TextField
+                  label="Last Name"
+                  sx={{
+                    margin: "0 auto",
+                    width: "100%",
+                    display: "inline-block",
+                  }}
+                />
+              </Grid>
+              <Grid item lg={2} sx={{}}></Grid>
+            </Grid>
+
+            <Grid container sx={{ padding: "20px 0px" }} spacing={2}>
+              <Grid item lg={2} sx={{}}></Grid>
+              <Grid item lg={8}>
+                <TextField
+                  sx={{ margin: "0 auto", width: "100%" }}
+                  label="Email"
+                />
+              </Grid>
+              <Grid item lg={2} sx={{}}></Grid>
+            </Grid>
+
+            <Grid container sx={{ padding: "20px 0px" }} spacing={2}>
+              <Grid item lg={2} sx={{}}></Grid>
+              <Grid item lg={8}>
+                <TextField
+                  sx={{ margin: "0 auto", width: "100%" }}
+                  label="Password"
+                />
+              </Grid>
+              <Grid item lg={2} sx={{}}></Grid>
+            </Grid>
+
+            <Grid container sx={{ padding: "20px 0px" }} spacing={2}>
+              <Grid item lg={2} sx={{}}></Grid>
+              <Grid item lg={8}>
+                <TextField
+                  sx={{ margin: "0 auto", width: "100%" }}
+                  label="Confirm Password"
+                />
+              </Grid>
+              <Grid item lg={2} sx={{}}></Grid>
+            </Grid>
+
+            <Box sx={{}}>
+              <Grid item lg={2} sx={{}}>
+                <FormGroup sx={{}}>
+                  <FormControlLabel
+
+                    control={<Checkbox />}
+                    label="I accept the Terms of Use & Privacy Policy"
+                    sx={{margin:'0 auto'}}
+                  />
+                </FormGroup>
+              </Grid>
+            </Box>
+
+            <Box sx={{ textAlign: "center" }}>
+              <Grid item lg={5}>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "10px 0px 40px 0px", backgroundColor: "green" }}
+                >
+                  Register Now
+                </Button>
+              </Grid>
+            </Box>
+          </Card>
+        </Container>
+      </Box>
+
       <div>
         <p>new Form</p>
       </div>
-
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Required"
-            defaultValue="Hello World"
-          />
-          <TextField
-            disabled
-            id="outlined-disabled"
-            label="Disabled"
-            defaultValue="Hello World"
-          />
-          <TextField
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="Read Only"
-            defaultValue="Hello World"
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <TextField
-            id="outlined-number"
-            label="Number"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField id="outlined-search" label="Search field" type="search" />
-          <TextField
-            id="outlined-helperText"
-            label="Helper text"
-            defaultValue="Default Value"
-            helperText="Some important text"
-          />
-        </div>
-        <div>
-          <TextField
-            required
-            id="filled-required"
-            label="Required"
-            defaultValue="Hello World"
-            variant="filled"
-          />
-          <TextField
-            disabled
-            id="filled-disabled"
-            label="Disabled"
-            defaultValue="Hello World"
-            variant="filled"
-          />
-          <TextField
-            id="filled-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            variant="filled"
-          />
-          <TextField
-            id="filled-read-only-input"
-            label="Read Only"
-            defaultValue="Hello World"
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="filled"
-          />
-          <TextField
-            id="filled-number"
-            label="Number"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="filled"
-          />
-          <TextField
-            id="filled-search"
-            label="Search field"
-            type="search"
-            variant="filled"
-          />
-          <TextField
-            id="filled-helperText"
-            label="Helper text"
-            defaultValue="Default Value"
-            helperText="Some important text"
-            variant="filled"
-          />
-        </div>
-        <div>
-          <TextField
-            required
-            id="standard-required"
-            label="Required"
-            defaultValue="Hello World"
-            variant="standard"
-          />
-          <TextField
-            disabled
-            id="standard-disabled"
-            label="Disabled"
-            defaultValue="Hello World"
-            variant="standard"
-          />
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            variant="standard"
-          />
-          <TextField
-            id="standard-read-only-input"
-            label="Read Only"
-            defaultValue="Hello World"
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="standard"
-          />
-          <TextField
-            id="standard-number"
-            label="Number"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="standard"
-          />
-          <TextField
-            id="standard-search"
-            label="Search field"
-            type="search"
-            variant="standard"
-          />
-          <TextField
-            id="standard-helperText"
-            label="Helper text"
-            defaultValue="Default Value"
-            helperText="Some important text"
-            variant="standard"
-          />
-        </div>
-      </Box>
     </>
   );
 }
