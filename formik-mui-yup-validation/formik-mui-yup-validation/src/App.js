@@ -9,16 +9,16 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import * as yup from 'yup';
 
 
 const initialValues = {
-  firstname:'',
-  lastname:'',
-  email:'',
-  password:'',
-  retypepassword:''
+  firstname: '',
+  lastname: '',
+  email: '',
+  password: '',
+  retypepassword: ''
 }
 
 const validationSchema = yup.object().shape({
@@ -52,66 +52,64 @@ const validationSchema = yup.object().shape({
 
 
 function App() {
-  const onsubmit =(value,props)=>{
+  const onsubmit = (value, props) => {
     console.log(value);
+    alert(JSON.stringify(value))
   }
   return (
-    <>
-      <Paper elevation={4} sx={{ width: '30%', margin: '100px auto',  }}>
+
+    <Box sx={{ width: '33%', margin: '100px auto', }}>
+      <Paper elevation={4} >
         <Container>
-          <Box sx={{textAlign:'center'}}>
-            <Typography sx={{fontSize:'32px', fontWeight:'500',marginTop:'40px', color:'gray'}}>Registration Form</Typography>
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography sx={{ fontSize: '2rem', fontWeight: '500', padding: '30px 0px', color: 'gray' }}>Registration Form</Typography>
           </Box>
-          <Grid sx={{padding:'20px 40px'}} >
+          <Box sx={{ margin: '0px 10px ' }}>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onsubmit}>
               {(props) => (
                 <Form sx={{ textalign: 'center' }}>
-                  <Grid  spacing={2}>
-                    <Grid lg={12}>
-
-                      <Grid lg={4}>
-                      <TextField  helperText={<ErrorMessage name='firstname'/>} name='firstname' label='First Name' >
-                      </TextField>
+                  <Grid container>
+                    <Grid container sx={{ margin: '10px 0px' }} >
+                      <Grid lg={5.5} md={5.5} sm={5.5} >
+                        <Field as={TextField} fullWidth helperText={<ErrorMessage name='firstname' />} name='firstname' label='First Name' >
+                        </Field>
                       </Grid>
+                      <Grid lg={1} md={1} sm={1}>
 
-                      <Grid lg={4}>
-                      <TextField  helperText={<ErrorMessage name='lastname'/>}  name='lastname' label='Last Name'  >
-                      </TextField>
+                      </Grid>
+                      <Grid lg={5.5} md={5.5} sm={5.5}>
+                        <Field as={TextField} fullWidth helperText={<ErrorMessage name='lastname' />} name='lastname' label='Last Name'  >
+                        </Field>
                       </Grid>
                     </Grid>
 
-
-                    <Grid lg={12}  >
-                      <Field as={TextField} helperText={<ErrorMessage name='email'/>}  name='email' label='Email'  sx={{ margin: '20px 0px', width:'100%' }}  >
+                    <Grid xs={12} sm={12} md={12} lg={12} sx={{margin:'10px 0px'}}  >
+                      <Field as ={TextField} fullWidth helperText={<ErrorMessage name='email' />} name='email' label='Email'  >
                       </Field>
                     </Grid>
 
-                    <Grid sx={{ width: '100%' }} >
-                      <Field as={TextField} helperText={<ErrorMessage name='password'/>}  name='password' label='Password' xs={12} sx={{ margin: '20px 0px', width: '100%' }}  >
+                    <Grid xs={12} sm={12} md={12} lg={12} sx={{margin:'10px 0px'}}  >
+                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='password' />} name='password' label='Password'  >
                       </Field>
                     </Grid>
 
-                    <Grid sx={{ width: '100%' }} >
-                      <Field as={TextField} helperText={<ErrorMessage name='retypepassword'/>}  name='retypepassword' label='Re-Type Password' xs={12} sx={{ margin: '20px 0px', width: '100%' }}  >
+                    <Grid xs={12} sm={12} md={12} lg={12} sx={{margin:'10px 0px'}}  >
+                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='retypepassword' />} name='retypepassword' label='Re-Type Password'  >
                       </Field>
                     </Grid>
-                    
-                    <Grid sx={{textAlign:'center'}}>
-                    <Button variant='contained' type='submit'  sx={{width:'40%',margin:'20px 0px' }}>Submit</Button>
+
+                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ textAlign: 'center' }}>
+                      <Button variant='contained' type='submit' sx={{ width: '40%', margin: '10px 0px 30px 0px' }}>Submit</Button>
                     </Grid>
 
                   </Grid>
-
                 </Form>
               )}
             </Formik>
-
-          </Grid>
+          </Box>
         </Container>
-
       </Paper>
-    </>
-
+    </Box>
   );
 }
 

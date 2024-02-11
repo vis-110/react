@@ -67,7 +67,7 @@ function App() {
       setData(data);
     };
     gettodata();
-  }, [])
+  })
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     console.log('Form values:', values);
