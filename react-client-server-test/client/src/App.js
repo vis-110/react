@@ -69,64 +69,64 @@ function App() {
   };
   return (
     <>
-      <Box sx={{ width: '30%', margin: '100px auto' }}>
-        <Paper elevation={3} >
-          <Container maxWidth="lg">
+        <Box sx={{ width: '30%', margin: '100px auto' }}>
+          <Paper elevation={3} >
+            <Container maxWidth="lg">
 
-            <Box sx={{ textAlign: 'center', padding: '25px 0px' }}>
-              <Typography variant='h5'>Registration Form</Typography>
-            </Box>
+              <Box sx={{ textAlign: 'center', padding: '25px 0px' }}>
+                <Typography variant='h5'>Registration Form</Typography>
+              </Box>
 
-            <Box >
-              <Formik initialValues={initialKeyValue} validationSchema={validation} onSubmit={handleSubmit}>
-                {(props) => (
-                  <Form>
-                    <Grid container rowSpacing={3} >
-                      <Grid item lg={5.5} md={5.5} sm={5.5} xs={5.5}>
-                        <Field as={TextField} label='First Name' name='firstname'
-                          helperText={<ErrorMessage name='firstname' />} />
-                      </Grid>
-                      <Grid item lg={1} md={1} sm={1} xs={1}>
-                      </Grid>
-                      <Grid item lg={5.5} md={5.5} sm={5.5} xs={5.5}>
-                        <Field as={TextField} label='Last Name' name='lastname'
-                          helperText={<ErrorMessage name='lastname' />} />
-                      </Grid>
+              <Box >
+                <Formik initialValues={initialKeyValue} validationSchema={validation} onSubmit={handleSubmit}>
+                  {(props) => (
+                    <Form>
+                      <Grid container rowSpacing={3} >
+                        <Grid item lg={5.5} md={5.5} sm={5.5} xs={5.5}>
+                          <Field as={TextField} label='First Name' name='firstname'
+                            helperText={<ErrorMessage name='firstname' />} />
+                        </Grid>
+                        <Grid item lg={1} md={1} sm={1} xs={1}>
+                        </Grid>
+                        <Grid item lg={5.5} md={5.5} sm={5.5} xs={5.5}>
+                          <Field as={TextField} label='Last Name' name='lastname'
+                            helperText={<ErrorMessage name='lastname' />} />
+                        </Grid>
 
-                      <Grid item lg={12} md={12} sm={12} xs={12}>
-                        <Field as={TextField} fullWidth label='Email' name='email'
-                          helperText={<ErrorMessage name='email' />} />
-                      </Grid>
+                        <Grid item lg={12} md={12} sm={12} xs={12}>
+                          <Field as={TextField} fullWidth label='Email' name='email'
+                            helperText={<ErrorMessage name='email' />} />
+                        </Grid>
 
-                      <Grid item lg={12} md={12} sm={12} xs={12}>
-                        <Field as={TextField} fullWidth label='Age' name='age'
-                          helperText={<ErrorMessage name='age' />} />
-                      </Grid>
+                        <Grid item lg={12} md={12} sm={12} xs={12}>
+                          <Field as={TextField} fullWidth label='Age' name='age'
+                            helperText={<ErrorMessage name='age' />} />
+                        </Grid>
 
-                      <Grid item lg={12} md={12} sm={12} xs={12}>
-                        <Field as={TextField} fullWidth label='Phone Number' name='phonenumber'
-                          helperText={<ErrorMessage name='phonenumber' />} />
-                      </Grid>
+                        <Grid item lg={12} md={12} sm={12} xs={12}>
+                          <Field as={TextField} fullWidth label='Phone Number' name='phonenumber'
+                            helperText={<ErrorMessage name='phonenumber' />} />
+                        </Grid>
 
-                      <Grid item lg={12} md={12} sm={12} xs={12}>
-                        <Field as={TextField} fullWidth
-                          label="Address"
-                          multiline
-                          rows={4}
-                          name='address'
-                          helperText={<ErrorMessage name='address' />}
-                        />
-                      </Grid>
+                        <Grid item lg={12} md={12} sm={12} xs={12}>
+                          <Field as={TextField} fullWidth
+                            label="Address"
+                            multiline
+                            rows={4}
+                            name='address'
+                            helperText={<ErrorMessage name='address' />}
+                          />
+                        </Grid>
 
-                      <Grid sx={{ textAlign: 'center', marginBottom: '25px' }} item lg={12} md={12} sm={12} xs={12}>
-                        <Button type="submit"
-                          variant="contained">Submit</Button>
+                        <Grid sx={{ textAlign: 'center', marginBottom: '25px' }} item lg={12} md={12} sm={12} xs={12}>
+                          <Button type="submit"
+                            variant="contained">Submit</Button>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </Form>
-                )}
-              </Formik>
-            </Box>
+                    </Form>
+                  )}
+                </Formik>
+              </Box>
 
           </Container>
         </Paper>

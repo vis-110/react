@@ -1,0 +1,17 @@
+.MuiFormHelperText-root{
+  color: red !important;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+th{
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+td{
+  border: 1px solid gray;
+  padding: 10px;
+}
