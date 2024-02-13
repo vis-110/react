@@ -82,17 +82,17 @@ function UserRegister() {
                       </Grid>
                     </Grid>
 
-                    <Grid xs={12} sm={12} md={12} lg={12} sx={{margin:'10px 0px'}}  >
-                      <Field as ={TextField} fullWidth helperText={<ErrorMessage name='email' />} name='email' label='Email'  >
+                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
+                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='email' />} name='email' label='Email'  >
                       </Field>
                     </Grid>
 
-                    <Grid xs={12} sm={12} md={12} lg={12} sx={{margin:'10px 0px'}}  >
+                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
                       <Field as={TextField} fullWidth helperText={<ErrorMessage name='password' />} name='password' label='Password'  >
                       </Field>
                     </Grid>
 
-                    <Grid xs={12} sm={12} md={12} lg={12} sx={{margin:'10px 0px'}}  >
+                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
                       <Field as={TextField} fullWidth helperText={<ErrorMessage name='retypepassword' />} name='retypepassword' label='Re-Type Password'  >
                       </Field>
                     </Grid>

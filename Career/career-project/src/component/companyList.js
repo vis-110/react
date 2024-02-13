@@ -1,12 +1,10 @@
-import { Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import Box from "@mui/material/Box";
 
 export default function CompanyList() {
-
-
     const [getdata, setData] = useState([]);
     useEffect(() => {
         const gettodata = async () => {
@@ -17,36 +15,43 @@ export default function CompanyList() {
         gettodata();
     }, [])
     console.log(getdata);
+    
 
     return (
-        <Box>
-            <Box sx={{ margin: '100px 300px', textAlign: 'center' }}>
-
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Experience</th>
-                                <th>Qualification</th>
-                                <th>Job Title</th>
-                                <th>Job Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {getdata.map((get, i) => (
-                                <tr key={i}>
-                                    <td>{get.companyname}</td>
-                                    <td>{get.experience}</td>
-                                    <td>{get.qualificaton}</td>
-                                    <td>{get.jobtitle}</td>
-                                    <td>{get.jobdescription}</td>
+        <Box sx={{marginTop:'50px'}}>
+            <Container>
+                <Box sx={{textAlign:'end'}}>
+                    <Button variant="contained">Myjobs</Button>
+                </Box>
+                <Box>
+                    <Box sx={{marginTop:'100px'}}>
+                        <table style={{margin:"0 auto"}}>
+                            <thead>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Experience</th>
+                                    <th>Qualification</th>
+                                    <th>Job Title</th>
+                                    <th>Job Description</th>
+                                    <th>Apply Section</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </Box>
+                            </thead>
+                            <tbody style={{textAlign:'center'}}>
+                                {getdata.map((get, i) => (
+                                    <tr key={i}  >
+                                        <td>{get.companyname}</td>
+                                        <td>{get.experience}</td>
+                                        <td>{get.qualificaton}</td>
+                                        <td>{get.jobtitle}</td>
+                                        <td>{get.jobdescription}</td>
+                                        <td><Button variant="contained" sx={{backgroundColor:'red !important'}}>Apply</Button></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </Box>
+                </Box>
+            </Container>
         </Box>
     )
 }
