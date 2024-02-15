@@ -10,26 +10,23 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import * as yup from 'yup';
-
+import axios from 'axios'
 
 const initialValues = {
-  firstname: '',
-  lastname: '',
+  fullname: '',
   email: '',
   password: '',
-  retypepassword: ''
+  mobilenumber: '',
+  workstatus:'',
 }
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+
 const validationSchema = yup.object().shape({
-  firstname: yup
+  fullname: yup
     .string()
     .required("First Name is mandatory")
-    .matches(/^[A-Za-z ]*$/, "Enter alphabets only")
-    .min(3, "Mininum 3 character required")
-    .max(26, "Enter upto 26 character only"),
-  lastname: yup
-    .string()
-    .required("Last Name is mandatory")
     .matches(/^[A-Za-z ]*$/, "Enter alphabets only")
     .min(3, "Mininum 3 character required")
     .max(26, "Enter upto 26 character only"),
@@ -40,65 +37,60 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required("Password is required")
-    .min(4, "Minimum 4 character required")
-    .max(16, "Enter upto 15 character only"),
-  retypepassword: yup
+    .min(8, "Minimum 8 character required")
+    .max(16, "Enter upto 16 character only"),
+  mobilenumber: yup
     .string()
-    .required("Retypepassword is required")
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
-
+    .matches(phoneRegExp,"Phone number is not valid")
+    .required("Mobile Number is required")
 });
 
-
 function UserRegister() {
-  const onsubmit = (value, props) => {
+
+  const onsubmit = async(value, props) => {
     console.log(value);
     alert(JSON.stringify(value))
+    await axios.post("http://localhost:5000/userregistration",value)
+
   }
+
   return (
 
-    <Box sx={{ width: '33%', margin: '100px auto', }}>
+    <Box sx={{ width: '40%', margin: '100px auto', }}>
       <Paper elevation={4} >
         <Container>
           <Box sx={{ textAlign: 'center' }}>
-            <Typography sx={{ fontSize: '2rem', fontWeight: '500', padding: '30px 0px', color: 'gray' }}>Registration Form</Typography>
+            <Typography sx={{ fontSize: '2rem', fontWeight: '500', padding: '30px 0px', color: 'gray' }}>Find a job & Grow your career</Typography>
           </Box>
           <Box sx={{ margin: '0px 10px ' }}>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onsubmit}>
               {(props) => (
                 <Form sx={{ textalign: 'center' }}>
-                  <Grid container>
-                    <Grid container sx={{ margin: '10px 0px' }} >
-                      <Grid lg={5.5} md={5.5} sm={5.5} >
-                        <Field as={TextField} fullWidth helperText={<ErrorMessage name='firstname' />} name='firstname' label='First Name' >
-                        </Field>
-                      </Grid>
-                      <Grid lg={1} md={1} sm={1}>
+                  <Grid container rowSpacing={3}>
 
-                      </Grid>
-                      <Grid lg={5.5} md={5.5} sm={5.5}>
-                        <Field as={TextField} fullWidth helperText={<ErrorMessage name='lastname' />} name='lastname' label='Last Name'  >
-                        </Field>
-                      </Grid>
-                    </Grid>
-
-                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
-                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='email' />} name='email' label='Email'  >
+                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
+                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='fullname' />} name='fullname' label='Fullname'  >
                       </Field>
                     </Grid>
 
-                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
+                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
+                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='email' />} name='email' label='Email ID'  >
+                      </Field>
+                    </Grid>
+
+                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
                       <Field as={TextField} fullWidth helperText={<ErrorMessage name='password' />} name='password' label='Password'  >
                       </Field>
                     </Grid>
 
-                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
-                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='retypepassword' />} name='retypepassword' label='Re-Type Password'  >
+                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ margin: '10px 0px' }}  >
+                      <Field as={TextField} fullWidth helperText={<ErrorMessage name='mobilenumber' />} name='mobilenumber' label='Mobilenumber'  >
                       </Field>
                     </Grid>
 
-                    <Grid xs={12} sm={12} md={12} lg={12} sx={{ textAlign: 'center' }}>
-                      <Button variant='contained' type='submit' sx={{ width: '40%', margin: '10px 0px 30px 0px' }}>Submit</Button>
+              
+                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ textAlign: 'center' }}>
+                      <Button variant='contained' type='submit'   sx={{ width: '40%', margin: '10px 0px 30px 0px' }}>Register Now</Button>
                     </Grid>
 
                   </Grid>

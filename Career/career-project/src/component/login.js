@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { Link, useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 const initialKeyValue = {
     email: '',
     password: '',
@@ -20,12 +20,15 @@ const validation = yup.object().shape({
 });
 export default function Login() {
     const navigate = useNavigate();
-    const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         console.log(values);
         navigate('/companylist');
+        await axios.post("http://localhost:5000/user_logintable",values)
         resetForm();
         setSubmitting(false);
     }
+
+
 
     return (
         <Box sx={{ width: '30%', margin: '100px auto' }}>

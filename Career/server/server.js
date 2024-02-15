@@ -3,41 +3,59 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-    
-
 
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', (req,res)=>{
-    return res.json("Get data successfully");
+app.get('/', (req, res) => {
+  return res.json("Get data successfully");
 })
-
 const db = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "Vishnu@sql",
-	database: "recruiter"
+  host: "localhost",
+  user: "root",
+  password: "Vishnu@sql",
+  database: "recruiter"
 })
 
 db.connect((err) => {
-    if (err) {
-      console.error('Error connecting to MySQL:', err);
-      return;
-    }
-    console.log('Connected to MySQL');
-  });
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL');
+});
 
-app.get('/recruiterperson',(req,res)=>{
-    const sql ='SELECT * FROM recruiterperson';
+app.get('/recruiterperson', (req, res) => {
+  const sql = 'SELECT * FROM recruiterperson';
 
-    db.query(sql,(err,data)=>{
-        if(err) return res.json(err,"Error is occured")
-        return res.json(data)
-    })
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err, "Error is occured")
+    return res.json(data)
+  })
 })
 
-app.post('/recruiterperson',(req,res)=>{
+app.get('/user_registration', (req, res) => {
+
+  const sql = 'SELECT * FROM user_registration';
+
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err, "Error is occured")
+    return res.json(data)
+  })
+})
+
+
+app.get('/user_logintable', (req, res) => {
+
+  const sql = 'SELECT emailid FROM user_logintable';
+
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err, "Error is occured")
+    return res.json(data)
+  })
+})
+
+app.post('/recruiterperson', (req, res) => {
   const sql = 'INSERT INTO recruiterperson (companyname, experience, qualificaton, jobtitle,jobdescription) VALUES (?, ?, ?, ?, ?)';
   const formData = req.body;
   const value = [
@@ -47,15 +65,44 @@ app.post('/recruiterperson',(req,res)=>{
     formData.jobtitle,
     formData.description,
   ]
-  db.query(sql,value,(err,data)=>{
-    if(err) return res.json(err)
+  db.query(sql, value, (err, data) => {
+    if (err) return res.json(err)
     return res.json(data)
   })
 })
 
+app.post('/user_registration', (req, res) => {
+  const sql = 'INSERT INTO user_logintable (fullname, email, psw, mobile_number,workstatus) VALUES (?, ?, ?, ?, ?)';
+  const formData = req.body;
+  const value = [
+    formData.fullname,
+    formData.email,
+    formData.password,
+    formData.mobilenumber,
+    formData.workstatus,
 
-app.listen(5000, ()=>{
-    console.log("listening");
+  ]
+  db.query(sql, value, (err, data) => {
+    if (err) return res.json(err)
+    return res.json(data)
+  })
+})
+
+app.post('/user_logintable', (req, res) => {
+  const sql = 'INSERT INTO user_logintable (emailid, password) VALUES (?, ?)';
+  const formData = req.body;
+  const value = [
+    formData.email,
+    formData.password,
+  ]
+  db.query(sql, value, (err, data) => {
+    if (err) return res.json(err)
+    return res.json(data)
+  })
+})
+
+app.listen(5000, () => {
+  console.log("listening");
 })
 
 
