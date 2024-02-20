@@ -3,7 +3,6 @@ import Home from './component/home';
 import Login from './component/login';
 import Register from './component/register';
 import CompanyList from './component/companyList';
-import CompanyPage from './component/companyList';
 import {BrowserRouter,Routes,Route, Link} from 'react-router-dom'
 import UserRegister from './component/userRegister';
 import Myjobs from './component/myjobs';
@@ -22,9 +21,9 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
-      <Route path='/companylist' element={<CompanyList/>}/>
+      <Route path='/companylist/:loginemail' element={<CompanyList/>}/>
       <Route path='/userregister' element={<UserRegister/>}/>
-      <Route path='/myjobs' element={<Myjobs/>}/>
+      <Route path='/myjobs/:personlogin' element={<Myjobs/>}/>
 
     </Routes>
     </BrowserRouter>

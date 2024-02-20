@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Paper, Typography } from '@mui/material';
 import *as yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -19,16 +19,24 @@ const validation = yup.object().shape({
 
 });
 export default function Login() {
+    const [loginemail, setlogin] = useState('')
     const navigate = useNavigate();
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-        console.log(values);
-        navigate('/companylist');
-        await axios.post("http://localhost:5000/user_logintable",values)
+        const { email } = values;
+        setlogin(email);
+        await axios.post("http://localhost:5000/test", values)
+            .then((res) => {
+                if (res.data === "success") {
+                    navigate(`/companylist/${email}`)
+                }
+                else {
+                    alert('Incorrected email and password')
+                }
+            })
+            .catch(err => console.log(err))
         resetForm();
         setSubmitting(false);
     }
-
-
 
     return (
         <Box sx={{ width: '30%', margin: '100px auto' }}>
@@ -57,12 +65,12 @@ export default function Login() {
                                         </Grid>
 
 
-                                        <Grid sx={{ textAlign: 'center', marginBottom: '25px' }} item lg={12} md={12} sm={12} xs={12}>
+                                        <Grid  sx={{ textAlign: 'center', marginBottom: '25px' }} item lg={12} md={12} sm={12} xs={12}>
                                             <Button type="submit" fullWidth
                                                 variant="contained">Login</Button>
                                         </Grid>
 
-                                        <Grid sx={{ textAlign: 'center', marginBottom: '25px' }} item lg={12} md={12} sm={12} xs={12}>
+                                        <Grid  sx={{ textAlign: 'center', marginBottom: '25px' }} item lg={12} md={12} sm={12} xs={12}>
                                             <Typography variant='p'>Not a member?<Typography variant='p' sx={{ color: 'blue', marginLeft: '5px' }}><Link to={'/userregister'}>SignUp</Link></Typography> </Typography>
                                         </Grid>
                                     </Grid>
@@ -70,7 +78,6 @@ export default function Login() {
                             )}
                         </Formik>
                     </Box>
-
                 </Container>
             </Paper>
         </Box>

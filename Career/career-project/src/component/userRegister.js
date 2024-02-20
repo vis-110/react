@@ -50,7 +50,7 @@ function UserRegister() {
   const onsubmit = async(value, props) => {
     console.log(value);
     alert(JSON.stringify(value))
-    await axios.post("http://localhost:5000/userregistration",value)
+    await axios.post("http://localhost:5000//user_registration",value)
 
   }
 
