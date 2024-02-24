@@ -10,7 +10,7 @@ export default function CompanyList() {
     const [getData, setData] = useState([]);
     const [columnData, setColumnData] = useState([]);
     const [userData, setUserData] = useState({});
-    const {loginemail} = useParams();
+    // const {loginemail} = useParams();
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -42,21 +42,41 @@ export default function CompanyList() {
     }, []);
 
     const myJobsnavi = () => {
-        console.log(loginemail);
-        navigate(`/myjobs/${loginemail}`);
+        // console.log(loginemail);
+        // navigate(`/myjobs/${loginemail}`);
+        navigate(`/myjobs`);
+
     }
 
-    const handleButtonClick = async (selectedRow) => {
-        console.log(loginemail);
+    // const handleButtonClick = async (selectedRow) => {
+    //     console.log(loginemail);
+    //     console.log(selectedRow);
+    //     if (selectedRow) {
+    //         const updatedUserData = { ...selectedRow, email: loginemail };
+    //         setUserData(updatedUserData);
+    //         console.log(updatedUserData); 
+    //         try {
+    //             console.log(getData);
+    //             console.log(columnData);
+    //             const response = await axios.post("http://localhost:5000/applylists", updatedUserData);
+    //             console.log(response.data);
+    //         } catch (error) {
+    //             console.error("Error", error);
+    //         }
+    //     }
+    // };
+
+        const handleButtonClick = async (selectedRow) => {
+        // console.log(loginemail);
         console.log(selectedRow);
         if (selectedRow) {
-            const updatedUserData = { ...selectedRow, email: loginemail };
-            setUserData(updatedUserData);
-            console.log(updatedUserData); 
+            // const updatedUserData = { ...selectedRow, email: loginemail };
+            // setUserData(selectedRow);
+            // console.log(selectedRow); 
             try {
-                console.log(getData);
-                console.log(columnData);
-                const response = await axios.post("http://localhost:5000/applylists", updatedUserData);
+                // console.log(getData);
+                // console.log(columnData);
+                const response = await axios.post("http://localhost:5000/rowData", selectedRow);
                 console.log(response.data);
             } catch (error) {
                 console.error("Error", error);

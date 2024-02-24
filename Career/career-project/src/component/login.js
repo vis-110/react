@@ -27,7 +27,10 @@ export default function Login() {
         await axios.post("http://localhost:5000/test", values)
             .then((res) => {
                 if (res.data === "success") {
-                    navigate(`/companylist/${email}`)
+                    // navigate(`/companylist/${email}`);
+                    axios.post("http://localhost:5000/email", {email});
+                    navigate(`/companylist`);
+
                 }
                 else {
                     alert('Incorrected email and password')

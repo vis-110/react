@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+let emails = '';
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false})) 
@@ -66,12 +67,13 @@ app.get('/applylists', (req, res) => {
   })
 })
 
-app.get(`/route`, (req, res) => {
+app.get('/appliedjob', (req, res) => {
     // const email = req.params.loginemail;
-    const loginemail = req.query.personlogin;
-  const myjobsQuery = 'select * from recruiter.applylists where emailid = ?';
+    // const loginemail = req.query.personlogin;
+  // const myjobsQuery = 'select * from recruiter.applylists where emailid = ?';
+  const myjobsQuery = "select recruiterperson.* from recruiterperson inner join appliedjob on appliedjob.s_no = recruiterperson.s_no where appliedjob.email = ? "
 
-  db.query(myjobsQuery,[loginemail] ,(err, data) => {
+  db.query(myjobsQuery,[emails] ,(err, data) => {
     if (err) {
       console.error('Error fetching users data:', err);
       res.status(500).json({ error: 'Internal server error' });
@@ -117,6 +119,7 @@ app.post('/user_registration', (req, res) => {
 
 app.post('/test', (req, res) => {
   const { email, password } = req.body;
+  console.log(email,password);
   db.query('SELECT * FROM user_registration WHERE email = ? AND psw = ?', [email, password], (error, results) => {
     if (error) {
       res.status(500).send('Error fetching user');
@@ -134,20 +137,41 @@ app.post('/test', (req, res) => {
   });
 });
 
-app.post('/applylists', (req, res) => {
-  const sql = 'INSERT INTO applylists (company_name, experience, qualification, job_title, job_description, emailid) VALUES ( ?, ?, ?, ?, ?, ?)';
+app.post('/email', (req, res) => {
+  // const sql = 'INSERT INTO applylists (id) VALUES (?)';
+
+  const { email } = req.body;
+  emails = email;
+  console.log(emails);
+});
+
+
+// app.post('/applylists', (req, res) => {
+//   const sql = 'INSERT INTO applylists (company_name, experience, qualification, job_title, job_description, emailid) VALUES ( ?, ?, ?, ?, ?, ?)';
+//   const formData = req.body;
+//   const values = [
+//     formData.companyname,
+//     formData.experience,
+//     formData.qualificaton,
+//     formData.jobtitle,
+//     formData.jobdescription,
+//     formData.email
+//   ]
+
+//   db.query(sql, values, (err, data) => {
+//     if (err) return res.json(err)
+//     return res.json(data);
+//   })
+// })
+
+// let storedData = '';
+app.post('/rowData', (req, res) => {
+  const sql = 'INSERT INTO appliedjob (email,s_no) VALUES (?,?)';
+
   const formData = req.body;
-  const values = [
-    formData.companyname,
-    formData.experience,
-    formData.qualificaton,
-    formData.jobtitle,
-    formData.jobdescription,
-    formData.email
-  ]
-
-
-  db.query(sql, values, (err, data) => {
+  console.log(formData.s_no);
+  console.log(emails);
+  db.query(sql, [emails,formData.s_no], (err, data) => {
     if (err) return res.json(err)
     return res.json(data);
   })

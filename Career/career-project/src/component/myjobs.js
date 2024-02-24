@@ -6,16 +6,17 @@ import { useParams } from "react-router-dom";
 
 export default function Myjobs() {
 
-    const { personlogin } = useParams();
-    console.log(personlogin);
-    const [columData, setColumnData ] = useState(null)
+    // const { personlogin } = useParams();
+    // console.log(personlogin);
+    const [jobData, setJobData ] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/route?personlogin=${personlogin}`);
-                console.log(response.data);
-                setColumnData(response.data);
+                const response = await fetch('http://localhost:5000/appliedjob');
+                const jsonData = await response.json();
+                setJobData(jsonData);
+                console.log(jsonData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -29,7 +30,7 @@ export default function Myjobs() {
                 Applied Job Lists 
             </Typography>
 
-            <Typography>{personlogin}</Typography>
+            {/* <Typography>{personlogin}</Typography> */}
 
             <Box sx={{ marginTop: '50px' }}>
                         <table style={{ margin: "0 auto" }}>
@@ -44,14 +45,14 @@ export default function Myjobs() {
                                 </tr>
                             </thead>
                             <tbody style={{ textAlign: 'center' }}>
-                                {columData.map((get, i) => (
+                                {jobData.map((get, i) => (
                                     <tr key={get.s_no} >
-                                        <td>{get.id}</td>
-                                        <td>{get.company_name}</td>
+                                        <td>{get.s_no}</td>
+                                        <td>{get.companyname}</td>
                                         <td>{get.experience}</td>
-                                        <td>{get.qualification}</td>
-                                        <td>{get.job_title}</td>
-                                        <td>{get.job_description}</td>
+                                        <td>{get.qualificaton}</td>
+                                        <td>{get.jobtitle}</td>
+                                        <td>{get.jobdescription}</td>
                                     </tr>
                                 ))}
                             </tbody>

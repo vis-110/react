@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import * as yup from 'yup';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
   fullname: '',
@@ -46,12 +47,12 @@ const validationSchema = yup.object().shape({
 });
 
 function UserRegister() {
-
+ const  navigate= useNavigate();
   const onsubmit = async(value, props) => {
     console.log(value);
     alert(JSON.stringify(value))
-    await axios.post("http://localhost:5000//user_registration",value)
-
+    await axios.post("http://localhost:5000/user_registration",value)
+    navigate("/login");
   }
 
   return (
